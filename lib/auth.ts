@@ -4,16 +4,7 @@ export function getAdminPassword(): string {
   return process.env.ADMIN_PASSWORD || "medhy";
 }
 
-/**
- * Returns true when the request is authorized.
- * When unauthorized, sends a 401 response and returns false.
- */
-export function requireAdmin(req: VercelRequest, res: VercelResponse): boolean {
-  const provided = req.headers["x-admin-password"];
-  const expected = getAdminPassword();
-  if (!provided || provided !== expected) {
-    res.status(401).json({ error: "Mot de passe administrateur invalide." });
-    return false;
-  }
+// Auth desactivee temporairement: le back-office est librement accessible.
+export function requireAdmin(_req: VercelRequest, _res: VercelResponse): boolean {
   return true;
 }

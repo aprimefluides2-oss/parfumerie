@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { getPerfumes, setPerfumes, assertStorageReady } from "../../lib/storage";
-import { requireAdmin } from "../../lib/auth";
+import { getPerfumes, setPerfumes, assertStorageReady } from "../../lib/storage.js";
+import { requireAdmin } from "../../lib/auth.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
