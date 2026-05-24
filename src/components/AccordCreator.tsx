@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { LAYERING_NOTES } from "../perfumesData";
+import { usePerfumes } from "../PerfumesContext";
 import { LayerNote } from "../types";
 import { 
   Sparkles, 
@@ -25,6 +25,7 @@ interface SavedFormula {
 }
 
 export default function AccordCreator() {
+  const { layering: LAYERING_NOTES } = usePerfumes();
   const [selectedNotes, setSelectedNotes] = useState<LayerNote[]>([]);
   const [savedFormulas, setSavedFormulas] = useState<SavedFormula[]>([]);
   const [customName, setCustomName] = useState("");

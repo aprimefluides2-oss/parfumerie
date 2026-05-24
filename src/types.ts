@@ -4,7 +4,7 @@ export interface PriceSize {
 }
 
 export interface Perfume {
-  id: "gold" | "rose" | "midnight" | "amber";
+  id: string;
   name: string;
   subtitle: string;
   category: "Collection Féminine" | "Collection Masculine" | "Collection Privée";

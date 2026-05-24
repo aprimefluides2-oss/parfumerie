@@ -12,13 +12,14 @@ import {
   AlertCircle
 } from "lucide-react";
 import { ChatMessage, Perfume } from "../types";
-import { PERFUMES } from "../perfumesData";
+import { usePerfumes } from "../PerfumesContext";
 
 interface OlfactoryAdvisorProps {
   onSelectPerfume: (perfume: Perfume) => void;
 }
 
 export default function OlfactoryAdvisor({ onSelectPerfume }: OlfactoryAdvisorProps) {
+  const { perfumes: PERFUMES } = usePerfumes();
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: "welcome",

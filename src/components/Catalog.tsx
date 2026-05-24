@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { PERFUMES } from "../perfumesData";
+import { usePerfumes } from "../PerfumesContext";
 import { Perfume, PriceSize } from "../types";
 import { 
   Sparkles, 
@@ -24,6 +24,7 @@ interface CatalogProps {
 }
 
 export default function Catalog({ onAddToBag, searchQuery }: CatalogProps) {
+  const { perfumes: PERFUMES } = usePerfumes();
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [selectedPerfume, setSelectedPerfume] = useState<Perfume | null>(null);
   const [selectedSize, setSelectedSize] = useState<string>("100 ml");

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { PERFUMES } from "../perfumesData";
+import { usePerfumes } from "../PerfumesContext";
 import { Perfume } from "../types";
 import { 
   Sparkles, 
@@ -14,11 +14,13 @@ import {
 } from "lucide-react";
 
 export default function CompareSection() {
+  const { perfumes: PERFUMES } = usePerfumes();
   const [perfumeId1, setPerfumeId1] = useState<string>("gold");
   const [perfumeId2, setPerfumeId2] = useState<string>("midnight");
 
+  if (PERFUMES.length === 0) return null;
   const perfume1 = PERFUMES.find(p => p.id === perfumeId1) || PERFUMES[0];
-  const perfume2 = PERFUMES.find(p => p.id === perfumeId2) || PERFUMES[2];
+  const perfume2 = PERFUMES.find(p => p.id === perfumeId2) || PERFUMES[Math.min(2, PERFUMES.length - 1)];
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

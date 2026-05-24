@@ -1,0 +1,10 @@
+[
+  { "id": "note_rose", "name": "Absolu de Rose", "category": "cœur", "description": "Un cœur charnel de pétales de rose de Damas veloutés.", "intensity": 4 },
+  { "id": "note_jasmin", "name": "Jasmin Impérial", "category": "cœur", "description": "Une nuance solaire, florale opulente d'un blanc crémeux.", "intensity": 5 },
+  { "id": "note_bergamote", "name": "Bergamote de Calabre", "category": "tête", "description": "Une envolée pétillante, zestée, fraîche de l'Italie du sud.", "intensity": 3 },
+  { "id": "note_mandarine", "name": "Mandarine Douce", "category": "tête", "description": "Une brise fruitée, vibrante, douce et addictive.", "intensity": 2 },
+  { "id": "note_oud", "name": "Bois de Oud Fumé", "category": "fond", "description": "Une profondeur sombre, boisée sacrée d'or noir d'Assam.", "intensity": 5 },
+  { "id": "note_santal", "name": "Santal crémeux", "category": "fond", "description": "Une texture lactée, boisée douce et souveraine.", "intensity": 3 },
+  { "id": "note_vanille", "name": "Gousse de Vanille Noire", "category": "fond", "description": "Une essence suave, cuirée et noble de Bourbon.", "intensity": 4 },
+  { "id": "note_ambre", "name": "Ambre Chaud", "category": "fond", "description": "Un souffle de résines dorées, sensuel et poudré.", "intensity": 4 }
+]

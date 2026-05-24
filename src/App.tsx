@@ -7,7 +7,6 @@ import OlfactoryAdvisor from "./components/OlfactoryAdvisor";
 import AccordCreator from "./components/AccordCreator";
 import CompareSection from "./components/CompareSection";
 import CartModal, { CartItem } from "./components/CartModal";
-import { PERFUMES } from "./perfumesData";
 import { Perfume } from "./types";
 import { 
   Mail, 
