@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Helvetica Neue", sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-cinzel: "Cinzel", "Times New Roman", serif;
+}
+
+/* Elegant scrollbar and custom selections for luxury experience */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b8860b;
+}
+
+::selection {
+  background: #b8860b;
+  color: #050505;
+}

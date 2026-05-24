@@ -1,0 +1,6 @@
+{
+  "name": "Maison Élixir - Haute Parfumerie",
+  "description": "Une expérience immersive de haute parfumerie inspirée par l'élégance intemporelle de Dior. Découvrez notre catalogue de fragrances d'exception, notre conseiller olfactif IA et notre créateur d'accord de parfum unique.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
