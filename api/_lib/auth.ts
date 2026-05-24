@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
 export function getAdminPassword(): string {
-  return process.env.ADMIN_PASSWORD || "admin";
+  return process.env.ADMIN_PASSWORD || "medhy";
 }
 
 /**

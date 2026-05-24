@@ -10,7 +10,7 @@ npm run dev
 ```
 
 - Site public : http://localhost:3000
-- Back-office : http://localhost:3000/admin (mot de passe par défaut : `admin`)
+- Back-office : http://localhost:3000/admin (mot de passe par défaut : `medhy`)
 
 En local les données sont stockées dans `data/perfumes.json` et `data/layering.json`, les images uploadées dans `public/uploads/`.
 
@@ -18,7 +18,7 @@ En local les données sont stockées dans `data/perfumes.json` et `data/layering
 
 | Variable | Description | Défaut |
 |---|---|---|
-| `ADMIN_PASSWORD` | Mot de passe du back-office | `admin` |
+| `ADMIN_PASSWORD` | Mot de passe du back-office | `medhy` |
 | `GEMINI_API_KEY` | Clé Google Gemini pour le conseiller olfactif IA | (mode simulation si absent) |
 
 ## Déploiement Vercel

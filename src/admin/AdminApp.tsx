@@ -56,7 +56,7 @@ export default function AdminApp() {
             Se connecter
           </button>
           <p className="text-[10px] text-stone-400 text-center">
-            Mot de passe défini via <code>ADMIN_PASSWORD</code> dans <code>.env</code> (défaut : <code>admin</code>)
+            Mot de passe défini via <code>ADMIN_PASSWORD</code> dans <code>.env</code>
           </p>
         </form>
       </div>
