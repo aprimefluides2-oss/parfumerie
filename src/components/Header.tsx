@@ -1,4 +1,4 @@
-import { Search, ShoppingBag, Compass, HelpCircle, Flame, Layers, Moon, Mail, Sparkles, X, Menu } from "lucide-react";
+import { Search, ShoppingBag, Compass, HelpCircle, Flame, Layers, Moon, Mail, Sparkles, X, Menu, Lock } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
@@ -105,6 +105,16 @@ export default function Header({
             <Search className="w-4.5 h-4.5 stroke-[1.5] transition-transform group-hover:scale-110" />
           </button>
 
+          {/* Admin Back-office Access */}
+          <a
+            href="/admin"
+            className="p-2.5 rounded-full hover:bg-white/5 transition-colors text-white/70 hover:text-[#b8860b] hidden sm:flex items-center justify-center focus:outline-none"
+            aria-label="Espace administrateur"
+            title="Back-office"
+          >
+            <Lock className="w-4 h-4 stroke-[1.5]" />
+          </a>
+
           {/* Premium Cart Button */}
           <button
             onClick={openCart}
@@ -210,13 +220,22 @@ export default function Header({
               </div>
             </div>
 
-            <div className="border-t border-white/5 pt-6 text-center">
-              <p className="text-[10px] tracking-[0.2em] text-[#b8860b] font-sans">
-                Atelier Christian Dior Paris Vibe
-              </p>
-              <p className="text-[9px] text-stone-500 font-sans mt-0.5">
-                Créé en mai 2026
-              </p>
+            <div className="border-t border-white/5 pt-6 space-y-3">
+              <a
+                href="/admin"
+                className="flex items-center gap-2 text-xs tracking-widest text-[#a1a1a1] hover:text-[#b8860b] uppercase"
+              >
+                <Lock className="w-3.5 h-3.5" />
+                Back-office
+              </a>
+              <div className="text-center">
+                <p className="text-[10px] tracking-[0.2em] text-[#b8860b] font-sans">
+                  Atelier Christian Dior Paris Vibe
+                </p>
+                <p className="text-[9px] text-stone-500 font-sans mt-0.5">
+                  Créé en mai 2026
+                </p>
+              </div>
             </div>
           </motion.div>
         )}
