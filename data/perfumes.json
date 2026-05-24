@@ -40,7 +40,7 @@
       "Héliotrope chaleureux",
       "Santal de Mysore"
     ],
-    "image": "/src/assets/images/perfume_gold_1779660881863.png",
+    "image": "/images/perfume_gold_1779660881863.png",
     "colorTheme": {
       "bg": "bg-amber-500",
       "text": "text-amber-900",
@@ -91,7 +91,7 @@
       "Bois de Cèdre de l'Atlas",
       "Fève tonka fine"
     ],
-    "image": "/src/assets/images/perfume_rose_1779660918617.png",
+    "image": "/images/perfume_rose_1779660918617.png",
     "colorTheme": {
       "bg": "bg-rose-400",
       "text": "text-rose-900",
@@ -143,7 +143,7 @@
       "Cuir de Russie",
       "Cèdre de Virginie"
     ],
-    "image": "/src/assets/images/perfume_midnight_1779660900238.png",
+    "image": "/images/perfume_midnight_1779660900238.png",
     "colorTheme": {
       "bg": "bg-slate-700",
       "text": "text-slate-900",
@@ -195,7 +195,7 @@
       "Bois de Santal lacté",
       "Ambre sec"
     ],
-    "image": "/src/assets/images/perfume_amber_1779660938970.png",
+    "image": "/images/perfume_amber_1779660938970.png",
     "colorTheme": {
       "bg": "bg-[#8E5132]",
       "text": "text-amber-950",

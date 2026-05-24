@@ -15,7 +15,7 @@ export default function Hero({ onExplore, onDiagnose }: HeroProps) {
           initial={{ scale: 1.15, opacity: 0 }}
           animate={{ scale: 1, opacity: 0.45 }}
           transition={{ duration: 2.2, ease: "easeOut" }}
-          src="/src/assets/images/perfume_hero_banner_1779660862005.png"
+          src="/images/perfume_hero_banner_1779660862005.png"
           alt="Maison Élixir Éditorial"
           referrerPolicy="no-referrer"
           className="w-full h-full object-cover object-center"
