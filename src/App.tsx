@@ -6,6 +6,7 @@ import Catalog from "./components/Catalog";
 import OlfactoryAdvisor from "./components/OlfactoryAdvisor";
 import AccordCreator from "./components/AccordCreator";
 import CompareSection from "./components/CompareSection";
+import Nouveautes from "./components/Nouveautes";
 import CartModal, { CartItem } from "./components/CartModal";
 import { Perfume } from "./types";
 import { 
@@ -173,6 +174,10 @@ export default function App() {
                   </div>
                 </section>
               </>
+            )}
+
+            {activeTab === "nouveautes" && (
+              <Nouveautes onAddToBag={handleAddToBag} />
             )}
 
             {activeTab === "advisor" && (

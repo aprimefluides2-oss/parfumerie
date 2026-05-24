@@ -1,4 +1,4 @@
-import { Search, ShoppingBag, Compass, HelpCircle, Flame, Layers, Moon, Mail, Sparkles, X, Menu, Lock } from "lucide-react";
+import { Search, ShoppingBag, Compass, HelpCircle, Flame, Layers, Moon, Mail, Sparkles, X, Menu, Lock, Star } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
@@ -24,6 +24,7 @@ export default function Header({
 
   const tabs = [
     { id: "collection", name: "La Collection", icon: Compass },
+    { id: "nouveautes", name: "Nouveautés", icon: Star },
     { id: "advisor", name: "Conseiller Olfactif IA", icon: HelpCircle },
     { id: "creator", name: "Créateur d'Accord", icon: Layers },
     { id: "compare", name: "Prisme Comparatif", icon: Flame }
