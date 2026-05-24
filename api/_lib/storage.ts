@@ -1,5 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
+import { kv } from "@vercel/kv";
 import seedPerfumes from "../../data/perfumes.json";
 import seedLayering from "../../data/layering.json";
 
@@ -14,11 +15,6 @@ const LAYERING_FILE = path.join(DATA_DIR, "layering.json");
 
 const KEY_PERFUMES = "elixir:perfumes";
 const KEY_LAYERING = "elixir:layering";
-
-async function getKv() {
-  const mod = await import("@vercel/kv");
-  return mod.kv;
-}
 
 async function readLocal(file: string, seed: AnyArr): Promise<AnyArr> {
   try {
@@ -35,7 +31,6 @@ async function writeLocal(file: string, data: AnyArr): Promise<void> {
 }
 
 async function readKv(key: string, seed: AnyArr): Promise<AnyArr> {
-  const kv = await getKv();
   const data = await kv.get<AnyArr>(key);
   if (data && Array.isArray(data)) return data;
   await kv.set(key, seed);
@@ -43,7 +38,6 @@ async function readKv(key: string, seed: AnyArr): Promise<AnyArr> {
 }
 
 async function writeKv(key: string, data: AnyArr): Promise<void> {
-  const kv = await getKv();
   await kv.set(key, data);
 }
 
@@ -67,7 +61,6 @@ export async function setLayering(data: AnyArr): Promise<void> {
   return writeLocal(LAYERING_FILE, data);
 }
 
-// Throws a friendly error when storage is misconfigured on Vercel.
 export function assertStorageReady() {
   if (isVercel && !hasKv) {
     throw new Error(

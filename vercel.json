@@ -2,6 +2,11 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "vite build",
   "outputDirectory": "dist",
+  "functions": {
+    "api/**/*.ts": {
+      "runtime": "@vercel/node@3.2.29"
+    }
+  },
   "rewrites": [
     { "source": "/admin", "destination": "/admin.html" }
   ]

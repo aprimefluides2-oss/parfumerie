@@ -1,5 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
+import { put } from "@vercel/blob";
 
 const isVercel = !!process.env.VERCEL;
 const hasBlob = !!process.env.BLOB_READ_WRITE_TOKEN;
@@ -19,7 +20,6 @@ export async function uploadImage(filename: string, dataUrl: string): Promise<st
         "Vercel Blob n'est pas configuré. Active 'Blob' dans Storage sur le dashboard Vercel."
       );
     }
-    const { put } = await import("@vercel/blob");
     const blob = await put(`perfumes/${finalName}`, buffer, {
       access: "public",
       contentType: match[1],
