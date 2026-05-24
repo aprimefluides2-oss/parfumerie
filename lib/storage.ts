@@ -1,8 +1,8 @@
 import fs from "fs/promises";
 import path from "path";
 import { kv } from "@vercel/kv";
-import seedPerfumes from "../../data/perfumes.json";
-import seedLayering from "../../data/layering.json";
+import seedPerfumes from "../data/perfumes.json";
+import seedLayering from "../data/layering.json";
 
 type AnyArr = any[];
 

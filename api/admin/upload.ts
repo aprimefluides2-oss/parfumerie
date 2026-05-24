@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { requireAdmin } from "../_lib/auth";
-import { uploadImage } from "../_lib/upload";
+import { requireAdmin } from "../../lib/auth";
+import { uploadImage } from "../../lib/upload";
 
 export const config = {
   api: {
