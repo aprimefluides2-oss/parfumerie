@@ -1,5 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
+import { SEED_PERFUMES, SEED_LAYERING } from "./seed.js";
 
 type AnyArr = any[];
 
@@ -13,19 +14,19 @@ const LAYERING_FILE = path.join(DATA_DIR, "layering.json");
 const KEY_PERFUMES = "elixir:perfumes";
 const KEY_LAYERING = "elixir:layering";
 
-// Lazy import to avoid loading @vercel/kv unless actually needed (and avoid
-// breaking the function bundle on Vercel when KV isn't configured yet).
+// Lazy dynamic import — keeps the function bundle small and resilient
+// when @vercel/kv isn't actually invoked.
 async function getKv() {
   const mod = await import("@vercel/kv");
   return mod.kv;
 }
 
-async function readLocal(file: string): Promise<AnyArr> {
+async function readLocal(file: string, seed: AnyArr): Promise<AnyArr> {
   try {
     const raw = await fs.readFile(file, "utf-8");
     return JSON.parse(raw);
   } catch {
-    return [];
+    return seed;
   }
 }
 
@@ -34,10 +35,12 @@ async function writeLocal(file: string, data: AnyArr): Promise<void> {
   await fs.writeFile(file, JSON.stringify(data, null, 2), "utf-8");
 }
 
-async function readKv(key: string): Promise<AnyArr> {
+async function readKv(key: string, seed: AnyArr): Promise<AnyArr> {
   const kv = await getKv();
   const data = await kv.get<AnyArr>(key);
-  return Array.isArray(data) ? data : [];
+  if (data && Array.isArray(data)) return data;
+  await kv.set(key, seed);
+  return seed;
 }
 
 async function writeKv(key: string, data: AnyArr): Promise<void> {
@@ -46,29 +49,38 @@ async function writeKv(key: string, data: AnyArr): Promise<void> {
 }
 
 export async function getPerfumes(): Promise<AnyArr> {
-  if (isVercel && hasKv) return readKv(KEY_PERFUMES);
-  return readLocal(PERFUMES_FILE);
+  if (isVercel && hasKv) return readKv(KEY_PERFUMES, SEED_PERFUMES);
+  if (isVercel) return SEED_PERFUMES; // no KV → show seed in read-only
+  return readLocal(PERFUMES_FILE, SEED_PERFUMES);
 }
 
 export async function setPerfumes(data: AnyArr): Promise<void> {
   if (isVercel && hasKv) return writeKv(KEY_PERFUMES, data);
+  if (isVercel) throw new StorageNotPersistedError();
   return writeLocal(PERFUMES_FILE, data);
 }
 
 export async function getLayering(): Promise<AnyArr> {
-  if (isVercel && hasKv) return readKv(KEY_LAYERING);
-  return readLocal(LAYERING_FILE);
+  if (isVercel && hasKv) return readKv(KEY_LAYERING, SEED_LAYERING);
+  if (isVercel) return SEED_LAYERING;
+  return readLocal(LAYERING_FILE, SEED_LAYERING);
 }
 
 export async function setLayering(data: AnyArr): Promise<void> {
   if (isVercel && hasKv) return writeKv(KEY_LAYERING, data);
+  if (isVercel) throw new StorageNotPersistedError();
   return writeLocal(LAYERING_FILE, data);
 }
 
-export function assertStorageReady() {
-  if (isVercel && !hasKv) {
-    throw new Error(
-      "Vercel KV n'est pas configuré. Ajoute KV_REST_API_URL et KV_REST_API_TOKEN dans les variables d'environnement Vercel."
+export class StorageNotPersistedError extends Error {
+  constructor() {
+    super(
+      "Vercel KV n'est pas configuré : les lectures fonctionnent en mode démo, mais les modifications ne peuvent pas être sauvegardées. Active KV dans Storage → Create Database sur le dashboard Vercel."
     );
+    this.name = "StorageNotPersistedError";
   }
+}
+
+export function assertStorageReady() {
+  // No-op : reads work without KV (seed fallback), writes throw on demand.
 }
