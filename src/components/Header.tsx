@@ -32,30 +32,31 @@ export default function Header({
   return (
     <header className="sticky top-0 z-50 bg-[#050505]/95 backdrop-blur-md border-b border-white/5 transition-all duration-300">
       {/* Couture Top Band */}
-      <div className="bg-[#000000] text-[#b8860b] text-[10px] tracking-[0.25em] py-2 text-center uppercase font-light border-b border-white/5">
-        Livraison offerte dès 150 € d'achat · Maison Élixir Paris · L'Art du Parfum
+      <div className="bg-[#000000] text-[#b8860b] text-[9px] sm:text-[10px] tracking-[0.2em] sm:tracking-[0.25em] py-1.5 sm:py-2 text-center uppercase font-light border-b border-white/5 px-2">
+        <span className="hidden sm:inline">Livraison offerte dès 150 € d'achat · Maison Élixir Paris · L'Art du Parfum</span>
+        <span className="sm:hidden">Livraison offerte dès 150 €</span>
       </div>
 
       {/* Main Luxury Row */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2">
         {/* Toggle Mobile Menu */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 text-white/70 hover:text-white"
+          className="md:hidden p-2 text-white/70 hover:text-white shrink-0"
           aria-label="Menu principal"
         >
           <Menu className="w-6 h-6" />
         </button>
 
         {/* High-End Brand Signature Heading */}
-        <div 
+        <div
           onClick={() => setActiveTab("collection")}
-          className="cursor-pointer text-center md:text-left select-none relative animate-fade-in group"
+          className="cursor-pointer text-center md:text-left select-none relative animate-fade-in group min-w-0 flex-1 md:flex-initial"
         >
-          <h1 className="font-cinzel text-xl sm:text-2xl lg:text-3xl font-light tracking-[0.3em] uppercase text-white transition-all group-hover:text-[#b8860b]">
+          <h1 className="font-cinzel text-base sm:text-xl lg:text-3xl font-light tracking-[0.2em] sm:tracking-[0.3em] uppercase text-white transition-all group-hover:text-[#b8860b] truncate">
             Maison Élixir
           </h1>
-          <div className="text-[10px] tracking-[0.45em] uppercase text-[#a1a1a1] font-sans mt-[3px] text-center w-full md:text-left">
+          <div className="text-[9px] sm:text-[10px] tracking-[0.3em] sm:tracking-[0.45em] uppercase text-[#a1a1a1] font-sans mt-[2px] sm:mt-[3px] text-center w-full md:text-left truncate">
             Haute Parfumerie · Paris
           </div>
         </div>
@@ -95,11 +96,11 @@ export default function Header({
         </nav>
 
         {/* Extra Actions Layout: Search and Cart */}
-        <div className="flex items-center space-x-3 sm:space-x-5">
+        <div className="flex items-center space-x-1 sm:space-x-3 lg:space-x-5 shrink-0">
           {/* Elegant Search Trigger */}
           <button
             onClick={() => setShowSearch(!showSearch)}
-            className="p-2.5 rounded-full hover:bg-white/5 transition-colors text-white/70 hover:text-white relative group focus:outline-none"
+            className="p-2 sm:p-2.5 rounded-full hover:bg-white/5 transition-colors text-white/70 hover:text-white relative group focus:outline-none"
             aria-label="Recherche"
           >
             <Search className="w-4.5 h-4.5 stroke-[1.5] transition-transform group-hover:scale-110" />

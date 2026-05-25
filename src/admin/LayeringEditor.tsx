@@ -64,20 +64,20 @@ export default function LayeringEditor() {
     <div className="space-y-4">
       {error && <div className="bg-red-50 border border-red-200 text-red-700 px-3 py-2 rounded text-sm">{error}</div>}
 
-      <div className="flex justify-between items-center">
-        <h2 className="font-cinzel text-lg uppercase tracking-widest">Notes de layering</h2>
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+        <h2 className="font-cinzel text-base sm:text-lg uppercase tracking-widest">Notes de layering</h2>
         <button
           onClick={() => { setEditing(empty()); setIsNew(true); }}
-          className="px-4 py-2 bg-stone-900 text-white text-sm uppercase tracking-wider rounded hover:bg-stone-700"
+          className="w-full sm:w-auto px-4 py-2 bg-stone-900 text-white text-sm uppercase tracking-wider rounded hover:bg-stone-700"
         >
           + Nouvelle note
         </button>
       </div>
 
       {editing && (
-        <div className="bg-white p-5 rounded-lg shadow-sm border border-stone-200 space-y-3">
+        <div className="bg-white p-4 sm:p-5 rounded-lg shadow-sm border border-stone-200 space-y-3">
           <h3 className="font-semibold">{isNew ? "Nouvelle note" : `Éditer · ${editing.name}`}</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label className={labelCls}>Identifiant</label>
               <input
@@ -122,7 +122,7 @@ export default function LayeringEditor() {
               onChange={e => setEditing({ ...editing, description: e.target.value })}
             />
           </div>
-          <div className="flex justify-end gap-2">
+          <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-2">
             <button onClick={() => { setEditing(null); setIsNew(false); }} className="px-4 py-2 text-sm text-stone-600 hover:text-stone-900">
               Annuler
             </button>
@@ -133,8 +133,37 @@ export default function LayeringEditor() {
         </div>
       )}
 
-      <div className="bg-white rounded-lg shadow-sm border border-stone-200 overflow-hidden">
-        <table className="w-full text-sm">
+      {/* Mobile: cards */}
+      <div className="sm:hidden space-y-3">
+        {notes.map(n => (
+          <div key={n.id} className="bg-white rounded-lg shadow-sm border border-stone-200 p-4">
+            <div className="flex justify-between items-start gap-2">
+              <div className="min-w-0 flex-1">
+                <div className="font-semibold truncate">{n.name}</div>
+                <div className="text-xs text-stone-500 font-mono">{n.id}</div>
+              </div>
+              <span className="text-[10px] uppercase bg-stone-100 px-2 py-0.5 rounded">{n.category}</span>
+            </div>
+            <div className="text-xs text-stone-600 mt-2">{n.description}</div>
+            <div className="text-xs text-amber-600 mt-2">{"★".repeat(n.intensity)}{"☆".repeat(5 - n.intensity)}</div>
+            <div className="flex gap-3 mt-3 pt-3 border-t border-stone-100">
+              <button onClick={() => { setEditing(n); setIsNew(false); }} className="flex-1 text-amber-700 hover:text-amber-900 text-xs font-semibold py-2">
+                Éditer
+              </button>
+              <button onClick={() => handleDelete(n.id)} className="flex-1 text-red-600 hover:text-red-800 text-xs font-semibold py-2">
+                Supprimer
+              </button>
+            </div>
+          </div>
+        ))}
+        {notes.length === 0 && (
+          <div className="bg-white rounded-lg border border-stone-200 px-3 py-6 text-center text-stone-400">Aucune note</div>
+        )}
+      </div>
+
+      {/* Desktop: table */}
+      <div className="hidden sm:block bg-white rounded-lg shadow-sm border border-stone-200 overflow-x-auto">
+        <table className="w-full text-sm min-w-[500px]">
           <thead className="bg-stone-100 text-[11px] uppercase tracking-wider text-stone-600">
             <tr>
               <th className="text-left px-3 py-2">id</th>
@@ -151,7 +180,7 @@ export default function LayeringEditor() {
                 <td className="px-3 py-2">{n.name}</td>
                 <td className="px-3 py-2">{n.category}</td>
                 <td className="px-3 py-2">{"★".repeat(n.intensity)}</td>
-                <td className="px-3 py-2 text-right space-x-3">
+                <td className="px-3 py-2 text-right space-x-3 whitespace-nowrap">
                   <button className="text-amber-700 hover:text-amber-900 text-xs" onClick={() => { setEditing(n); setIsNew(false); }}>
                     Éditer
                   </button>

@@ -225,7 +225,7 @@ export default function Catalog({ onAddToBag, searchQuery }: CatalogProps) {
               </button>
 
               {/* Left Column: Generative High-res Asset & Slogan Quote */}
-              <div className="w-full md:w-1/2 bg-black min-h-[300px] md:min-h-[500px] relative flex flex-col justify-end p-8 text-white">
+              <div className="w-full md:w-1/2 bg-black min-h-[240px] md:min-h-[500px] relative flex flex-col justify-end p-6 sm:p-8 text-white">
                 <img
                   src={selectedPerfume.image}
                   alt={selectedPerfume.name}
@@ -255,7 +255,7 @@ export default function Catalog({ onAddToBag, searchQuery }: CatalogProps) {
               </div>
 
               {/* Right Column: Specifications, Olfactory Pyramid and Sizing */}
-              <div className="w-full md:w-1/2 p-6 sm:p-10 flex flex-col justify-between max-h-[92vh] overflow-y-auto">
+              <div className="w-full md:w-1/2 p-5 sm:p-10 flex flex-col justify-between md:max-h-[92vh] md:overflow-y-auto">
                 <div>
                   {/* Category breadcrumb */}
                   <div className="flex items-center gap-1.5 text-[9px] tracking-widest text-[#b8860b] uppercase font-semibold mb-2">

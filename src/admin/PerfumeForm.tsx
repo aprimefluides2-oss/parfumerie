@@ -93,12 +93,12 @@ export default function PerfumeForm({ initial, isNew, onSubmit, onCancel }: Prop
   const inputCls = "w-full border border-stone-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 bg-white";
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 rounded-lg shadow-sm border border-stone-200">
-      <div className="flex justify-between items-center border-b border-stone-200 pb-3">
-        <h2 className="font-cinzel text-lg uppercase tracking-widest">
+    <form onSubmit={handleSubmit} className="space-y-6 bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-stone-200">
+      <div className="flex justify-between items-start gap-3 border-b border-stone-200 pb-3">
+        <h2 className="font-cinzel text-base sm:text-lg uppercase tracking-widest min-w-0 break-words">
           {isNew ? "Nouveau parfum" : `Éditer · ${data.name}`}
         </h2>
-        <button type="button" onClick={onCancel} className="text-stone-500 hover:text-stone-900 text-sm">
+        <button type="button" onClick={onCancel} className="text-stone-500 hover:text-stone-900 text-sm whitespace-nowrap shrink-0">
           ← Retour
         </button>
       </div>
@@ -300,7 +300,7 @@ export default function PerfumeForm({ initial, isNew, onSubmit, onCancel }: Prop
         </div>
       </fieldset>
 
-      <div className="flex justify-end gap-3 border-t border-stone-200 pt-4">
+      <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 border-t border-stone-200 pt-4 sticky bottom-0 bg-white pb-2">
         <button type="button" onClick={onCancel} className="px-4 py-2 text-sm text-stone-600 hover:text-stone-900">
           Annuler
         </button>

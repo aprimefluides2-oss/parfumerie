@@ -58,18 +58,49 @@ export default function PerfumeList() {
     <div className="space-y-4">
       {error && <div className="bg-red-50 border border-red-200 text-red-700 px-3 py-2 rounded text-sm">{error}</div>}
 
-      <div className="flex justify-between items-center">
-        <h2 className="font-cinzel text-lg uppercase tracking-widest">Parfums ({perfumes.length})</h2>
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+        <h2 className="font-cinzel text-base sm:text-lg uppercase tracking-widest">Parfums ({perfumes.length})</h2>
         <button
           onClick={() => setCreating(true)}
-          className="px-4 py-2 bg-stone-900 text-white text-sm uppercase tracking-wider rounded hover:bg-stone-700"
+          className="w-full sm:w-auto px-4 py-2 bg-stone-900 text-white text-sm uppercase tracking-wider rounded hover:bg-stone-700"
         >
           + Nouveau parfum
         </button>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-stone-200 overflow-hidden">
-        <table className="w-full text-sm">
+      {/* Mobile: stacked cards */}
+      <div className="sm:hidden space-y-3">
+        {perfumes.map(p => (
+          <div key={p.id} className="bg-white rounded-lg shadow-sm border border-stone-200 p-4">
+            <div className="flex gap-3">
+              {p.image && <img src={p.image} alt="" className="w-16 h-16 object-cover rounded flex-shrink-0" />}
+              <div className="flex-1 min-w-0">
+                <div className="font-semibold truncate">{p.name}</div>
+                <div className="text-xs text-stone-500 font-mono">{p.id}</div>
+                <div className="text-xs text-stone-600 mt-1">{p.category} · {p.gender}</div>
+              </div>
+            </div>
+            <div className="text-xs text-stone-600 mt-2 break-words">
+              {(p.priceSizes || []).map(ps => `${ps.size}: ${ps.price}€`).join(" · ")}
+            </div>
+            <div className="flex gap-3 mt-3 pt-3 border-t border-stone-100">
+              <button onClick={() => setEditing(p)} className="flex-1 text-amber-700 hover:text-amber-900 text-xs font-semibold py-2">
+                Éditer
+              </button>
+              <button onClick={() => handleDelete(p.id)} className="flex-1 text-red-600 hover:text-red-800 text-xs font-semibold py-2">
+                Supprimer
+              </button>
+            </div>
+          </div>
+        ))}
+        {perfumes.length === 0 && (
+          <div className="bg-white rounded-lg border border-stone-200 px-3 py-6 text-center text-stone-400">Aucun parfum</div>
+        )}
+      </div>
+
+      {/* Desktop: table */}
+      <div className="hidden sm:block bg-white rounded-lg shadow-sm border border-stone-200 overflow-x-auto">
+        <table className="w-full text-sm min-w-[600px]">
           <thead className="bg-stone-100 text-[11px] uppercase tracking-wider text-stone-600">
             <tr>
               <th className="text-left px-3 py-2 w-16"></th>
